@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>para helena </title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: 'Dancing Script', cursive;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .carousel-container {
+            width: 95%;
+            max-width: 400px;
+            /* Reduzido para fotos verticais */
+            margin: 20px auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 550px;
+            /* Aumentado para formato vertical */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: fall 8s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: #ff3366;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 15px 0;
+        }
+
+        /* Estilo para a seção de texto */
+        .text-container {
+            background: rgba(255, 51, 102, 0.1);
+            /* Fundo translúcido */
+            backdrop-filter: blur(10px);
+            /* Efeito de desfoque */
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+        }
+
+        .text-container p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .love-table {
+            margin: 25px auto;
+            border-collapse: separate;
+            border-spacing: 15px;
+            position: relative;
+            max-width: 800px;
+        }
+
+        .love-table::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            animation: pulse 1.5s infinite;
+        }
+
+        .love-table td {
+            background: rgba(255, 51, 102, 0.15);
+            border: 2px solid #ff3366;
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .love-table td span {
+            display: block;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff3366;
+            margin-bottom: 5px;
+        }
+
+        .love-table td:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.3);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.2);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        .counter {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #ff3366;
+            text-align: center;
+            width: 100%;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .music-player {
+            margin: 30px 0;
+            padding: 15px;
+            background: rgba(255, 51, 102, 0.1);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .carousel-container {
+                max-width: 350px;
+            }
+
+            .carousel-item {
+                height: 480px;
+            }
+
+            .text-container {
+                padding: 15px;
+            }
+
+            .text-container p {
+                font-size: 1em;
+            }
+
+            .love-table {
+                border-spacing: 10px;
+            }
+
+            .love-table td {
+                padding: 15px;
+                min-width: 100px;
+            }
+
+            .love-table td span {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .carousel-container {
+                max-width: 300px;
+            }
+
+            .carousel-item {
+                height: 420px;
+            }
+
+            .text-container {
+                padding: 10px;
+            }
+
+            .text-container p {
+                font-size: 0.95em;
+            }
+
+            .love-table {
+                border-spacing: 5px;
+                width: 95%;
+            }
+
+            .love-table td {
+                padding: 10px;
+                min-width: 80px;
+                font-size: 0.9em;
+            }
+
+            .love-table td span {
+                font-size: 1.2em;
+            }
+
+            .love-table::before {
+                font-size: 1.5em;
+                top: -20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-item" style="background-image: url('foto1.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('foto2.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('foto3.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('foto5.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('foto4.jpg')"></div>
+            <div class="carousel-item" style="background-image: url('foto6.jpg')"></div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>mais que uma amiga</h1>
+
+        <div class="text-container">
+            <p>
+                Helena, des que eu te conheci, minha vida moudo muito e pra melhor. Você é mais que uma amiga,e voce que
+                me faz querer melhorar todo dia.cada conversa com voce e algo que eu nunca vou esquecer.Eu nao quero que
+                nossa amizade dure para sempre, por que acretido que o pra sempre e pouco ainda, obrigado por me fazer
+                sorrir, voce pode ate n saber mas estar com voce e umas das coisas que mais gosto, sei que posso ser
+                meio injuado mas e pq essa e minha forma de dizer eu te amo !
+            </p>
+        </div>
+
+        <h2>minha felicidade comecou ha</h2>
+
+        <table class="love-table">
+            <tr>
+                <td>
+                    <span id="anos">00</span>
+                    anos
+                </td>
+                <td>
+                    <span id="meses">00</span>
+                    meses
+                </td>
+                <td>
+                    <span id="dias">00</span>
+                    dias
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="horas">00</span>
+                    horas
+                </td>
+                <td>
+                    <span id="minutos">00</span>
+                    minutos
+                </td>
+                <td>
+                    <span id="segundos">00</span>
+                    segundos
+                </td>
+            </tr>
+        </table>
+
+        <div class="counter">Desde 18 de fevereiro de 2026</div>
+
+        <div class="music-player">
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5yEais1zgeW1MjLrx7tsie?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>s
+            <script>
+                const startDate = new Date('2026-02-18T00:00:00');
+
+                function updateCounter() {
+                    const now = new Date();
+                    const diff = now - startDate;
+
+                    const seconds = Math.floor(diff / 1000);
+                    const minutes = Math.floor(seconds / 60);
+                    const hours = Math.floor(minutes / 60);
+                    const days = Math.floor(hours / 24);
+
+                    const years = Math.floor(days / 365);
+                    const remainingDays = days % 365;
+                    const months = Math.floor(remainingDays / 30);
+
+                    document.getElementById('anos').textContent = years.toString().padStart(2, '0');
+                    document.getElementById('meses').textContent = months.toString().padStart(2, '0');
+                    document.getElementById('dias').textContent = (remainingDays % 30).toString().padStart(2, '0');
+                    document.getElementById('horas').textContent = (hours % 24).toString().padStart(2, '0');
+                    document.getElementById('minutos').textContent = (minutes % 60).toString().padStart(2, '0');
+                    document.getElementById('segundos').textContent = (seconds % 60).toString().padStart(2, '0');
+                }
+                setInterval(updateCounter, 1000);
+                updateCounter();
+
+                const emojis = ['❤️', '😍'];
+                function createHeart() {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 24) + 'px';
+                    document.getElementById('hearts').appendChild(heart);
+                    setTimeout(() => heart.remove(), 10000);
+                }
+                setInterval(createHeart, 500);
+
+                let currentSlide = 0;
+                const carousel = document.getElementById('carousel');
+                const totalSlides = document.querySelectorAll('.carousel-item').length;
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+
+                function prevSlide() {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+
+                let touchStartX = 0;
+                carousel.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                carousel.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    if (touchStartX - touchEndX > 50) nextSlide();
+                    if (touchStartX - touchEndX < -50) prevSlide();
+                });
+
+                setInterval(nextSlide, 3000);
+            </script>
+</body>
+
+</html>
